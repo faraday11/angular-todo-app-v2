@@ -7,7 +7,7 @@ import { Todo } from '../models/todo.model';
 
 export const fetchTodosRequest = createAction('FETCH_TODOS_REQUEST');
 
-export const fetchTodosSucess = createAction(
+export const fetchTodosSuccess = createAction(
   'FETCH_TODOS_SUCCESS',
   (payload: NormalizedEntities<Todo>) => ({ payload })
 );
