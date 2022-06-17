@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as TodosActions from '../../actions/todos.actions';
 import { State } from '../../state/index.state';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'todo-example-app-todo-form',
@@ -9,14 +10,17 @@ import { State } from '../../state/index.state';
   styleUrls: ['./todo-form.component.scss'],
 })
 export class TodoFormComponent {
-  value = '';
+  new_todo = new FormControl('');
 
   constructor(private store: Store<State>) {}
 
-  addTodo(text: string): void {
+  addTodo(): void {
     this.store.dispatch(
-      TodosActions.addTodoRequest({ text, completed: false })
+      TodosActions.addTodoRequest({
+        text: this.new_todo.value,
+        completed: false,
+      })
     );
-    this.value = '';
+    this.new_todo.setValue('');
   }
 }

@@ -1,2 +1,2 @@
-<input [(ngModel)]="value" data-cy="todo-input" />
-<button (click)="addTodo(value)" data-cy="submit">Add Todo</button>
+<input [formControl]="new_todo" data-cy="todo-input" />
+<button (click)="addTodo()" data-cy="submit">Add Todo</button>
