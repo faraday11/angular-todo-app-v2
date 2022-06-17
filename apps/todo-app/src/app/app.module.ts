@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { InjectionToken, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -27,18 +26,7 @@ import {
   NoopInMemoryDataService,
 } from './services/noop-in-memory-data.service';
 import { environment } from '../environments/environment';
-
-const routes: Routes = [
-  {
-    path: ':filter',
-    component: VisibleTodoListComponent,
-  },
-  {
-    path: '',
-    redirectTo: 'all',
-    pathMatch: 'full',
-  },
-];
+import { AppRoutingModule } from './app-routing-module';
 
 export const REDUCER_TOKEN = new InjectionToken<
   ActionReducerMap<fromRoot.State>
@@ -58,10 +46,7 @@ export const getReducers = () => fromRoot.reducers;
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes, {
-      initialNavigation: 'enabled',
-      relativeLinkResolution: 'legacy',
-    }),
+    AppRoutingModule,
     StoreModule.forRoot(REDUCER_TOKEN, {
       metaReducers: !environment.production ? [] : [],
       runtimeChecks: {
