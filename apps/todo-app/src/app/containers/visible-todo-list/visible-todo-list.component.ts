@@ -54,7 +54,7 @@ export class VisibleTodoListComponent {
         this.store.dispatch(
           TodosActions.toggleTodoRequest({
             ...todo,
-            completed: !!todo.completed,
+            completed: !todo.completed,
           })
         )
       );
