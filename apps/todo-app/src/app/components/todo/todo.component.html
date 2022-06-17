@@ -1,9 +1,10 @@
-<li
+<mat-list-item
   (click)="toggleTodo.emit(todo)"
   [style.text-decoration]="todo.completed ? 'line-through' : 'none'"
   data-cy="todo"
 >
   {{ todo.text }}
-  <button (click)="deleteTodo.emit(todo); $event.stopImmediatePropagation()">delete</button>
+  <button mat-icon-button color="warn" (click)="deleteTodo.emit(todo); $event.stopImmediatePropagation()"><mat-icon>delete</mat-icon></button>
+</mat-list-item>
 
-</li>
+
