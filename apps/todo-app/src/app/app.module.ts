@@ -28,6 +28,7 @@ import {
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing-module';
 import { State } from './state/index.state';
+import { MaterialModule } from './material.module';
 
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<State>>(
   'Registered Reducers'
@@ -71,6 +72,7 @@ export const getReducers = () => fromRoot.reducers;
         passThruUnknownUrl: isCypress,
       }
     ),
+    MaterialModule,
     ReactiveFormsModule,
   ],
   providers: [
