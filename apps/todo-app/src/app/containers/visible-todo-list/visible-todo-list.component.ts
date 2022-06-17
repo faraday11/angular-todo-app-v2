@@ -59,4 +59,8 @@ export class VisibleTodoListComponent {
         )
       );
   }
+
+  deleteTodo(todo: Todo): void {
+    this.store.dispatch(TodosActions.deleteTodoRequest(todo));
+  }
 }

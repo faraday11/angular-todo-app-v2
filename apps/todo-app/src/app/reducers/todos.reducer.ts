@@ -30,7 +30,10 @@ const allIds = createReducer(
   on(TodosActions.addTodoSuccess, (state, { payload }) => [
     ...state,
     payload.result,
-  ])
+  ]),
+  on(TodosActions.deleteTodoSuccess, (state, { payload }) => {
+    return [...state.filter((value: string) => value != payload.id)];
+  })
 );
 
 export const todos = combineReducers({

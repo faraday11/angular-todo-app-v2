@@ -16,4 +16,5 @@ import { Todo } from '../../models/todo.model';
 export class TodoListComponent {
   @Input() todos: Todo[];
   @Output() toggleTodo = new EventEmitter<Todo>();
+  @Output() deleteTodo = new EventEmitter<Todo>();
 }

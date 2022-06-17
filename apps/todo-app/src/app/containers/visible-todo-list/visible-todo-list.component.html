@@ -6,5 +6,6 @@
   *ngIf="!((loadingTodos$ | async) || (todosError$ | async))"
   [todos]="visibleTodos$ | async"
   (toggleTodo)="toggleTodo($event)"
+  (deleteTodo)="deleteTodo($event)"
 >
 </todo-example-app-todo-list>

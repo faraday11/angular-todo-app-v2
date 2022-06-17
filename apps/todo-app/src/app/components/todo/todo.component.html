@@ -4,4 +4,6 @@
   data-cy="todo"
 >
   {{ todo.text }}
+  <button (click)="deleteTodo.emit(todo); $event.stopImmediatePropagation()">delete</button>
+
 </li>

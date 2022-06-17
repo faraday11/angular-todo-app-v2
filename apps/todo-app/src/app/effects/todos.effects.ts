@@ -62,5 +62,20 @@ export class TodosEffects {
     )
   );
 
+  deleteTodo$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(TodosActions.deleteTodoRequest),
+      mergeMap(({ payload }: { payload: Todo }) => {
+        return this.http.delete(`api/todos/${payload.id}`).pipe(
+          map(() => TodosActions.deleteTodoSuccess(payload)),
+          catchError((err) => {
+            console.log(err);
+            return of(TodosActions.deleteTodoFailure());
+          })
+        );
+      })
+    );
+  });
+
   constructor(private actions$: Actions, private http: HttpClient) {}
 }
