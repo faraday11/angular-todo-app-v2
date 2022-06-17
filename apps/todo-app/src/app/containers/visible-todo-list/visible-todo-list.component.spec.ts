@@ -8,6 +8,7 @@ import * as TodosActions from '../../actions/todos.actions';
 import { generateMockTodo } from '../../models/todo.model';
 import * as fromRoot from '../../reducers/index.reducer';
 import { ActivatedRouteStub } from '../../../testing/activated-route-stub';
+import { State } from '../../state/index.state';
 
 // A component, unlike all other parts of an Angular
 // application, combines a HTML template and a TypeScript
@@ -23,7 +24,7 @@ import { ActivatedRouteStub } from '../../../testing/activated-route-stub';
 describe('VisibleTodoListComponent', () => {
   let component: VisibleTodoListComponent;
   let fixture: ComponentFixture<VisibleTodoListComponent>;
-  let store: Store<fromRoot.State>;
+  let store: Store<State>;
   let activedRouteStub: ActivatedRouteStub;
   const todo = generateMockTodo();
 

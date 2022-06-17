@@ -1,8 +1,5 @@
 import { Action } from '@ngrx/store';
-
-export interface State {
-  [actionType: string]: boolean;
-}
+import { LoadingState } from '../state/index.state';
 
 export const loading = (
   state: { [actionType: string]: boolean } = {},
@@ -19,5 +16,5 @@ export const loading = (
   };
 };
 
-export const getIsLoading = (actionTypes: string[]) => (state: State) =>
+export const getIsLoading = (actionTypes: string[]) => (state: LoadingState) =>
   actionTypes.some((actionType) => state[actionType]);

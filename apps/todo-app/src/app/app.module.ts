@@ -27,10 +27,11 @@ import {
 } from './services/noop-in-memory-data.service';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing-module';
+import { State } from './state/index.state';
 
-export const REDUCER_TOKEN = new InjectionToken<
-  ActionReducerMap<fromRoot.State>
->('Registered Reducers');
+export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<State>>(
+  'Registered Reducers'
+);
 
 export const getReducers = () => fromRoot.reducers;
 

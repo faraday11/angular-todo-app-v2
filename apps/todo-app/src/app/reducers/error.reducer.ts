@@ -1,8 +1,5 @@
 import { Action } from '@ngrx/store';
-
-export interface State {
-  [actionType: string]: boolean;
-}
+import { ErrorState } from '../state/index.state';
 
 export const error = (
   state: { [actionType: string]: boolean } = {},
@@ -19,5 +16,5 @@ export const error = (
   };
 };
 
-export const getError = (actionTypes: string[]) => (state: State) =>
+export const getError = (actionTypes: string[]) => (state: ErrorState) =>
   actionTypes.some((actionType) => state[actionType]);

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as TodosActions from '../../actions/todos.actions';
-import { State } from '../../reducers/index.reducer';
+import { State } from '../../state/index.state';
 
 @Component({
   selector: 'todo-example-app-todo-form',

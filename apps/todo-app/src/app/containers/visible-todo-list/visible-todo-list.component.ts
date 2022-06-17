@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { filter, first, switchMap } from 'rxjs/operators';
 import * as TodosActions from '../../actions/todos.actions';
 import { Todo } from '../../models/todo.model';
-import * as fromRoot from '../../reducers/index.reducer';
+import * as Selectors from '../../selectors/index.selector';
+import { State } from '../../state/index.state';
 
 // Distinguishing between container and presentational components
 // provides semantic value and intentionality. Container components
@@ -28,27 +29,24 @@ export class VisibleTodoListComponent {
   loadingTodos$: Observable<boolean>;
   todosError$: Observable<boolean>;
 
-  constructor(
-    private store: Store<fromRoot.State>,
-    private router: ActivatedRoute
-  ) {
+  constructor(private store: Store<State>, private router: ActivatedRoute) {
     this.store.dispatch(TodosActions.fetchTodosRequest());
     this.visibleTodos$ = this.router.paramMap.pipe(
       switchMap((params) => {
         const todosFilter = params.get('filter');
-        return store.pipe(select(fromRoot.getVisibleTodos(todosFilter)));
+        return store.pipe(select(Selectors.getVisibleTodos(todosFilter)));
       })
     );
     this.loadingTodos$ = store.pipe(
-      select(fromRoot.getIsLoading(['FETCH_TODOS']))
+      select(Selectors.getIsLoading(['FETCH_TODOS']))
     );
-    this.todosError$ = store.pipe(select(fromRoot.getError(['FETCH_TODOS'])));
+    this.todosError$ = store.pipe(select(Selectors.getError(['FETCH_TODOS'])));
   }
 
   toggleTodo(todo: Todo): void {
     this.store
       .pipe(
-        select(fromRoot.getIsLoading(['TOGGLE_TODO'])),
+        select(Selectors.getIsLoading(['TOGGLE_TODO'])),
         first(),
         filter((isLoading) => !isLoading)
       )

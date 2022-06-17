@@ -1,6 +1,7 @@
 import { combineReducers, createReducer, on } from '@ngrx/store';
 import * as TodosActions from '../actions/todos.actions';
 import { Todo } from '../models/todo.model';
+import { TodosState } from '../state/index.state';
 
 // The recommended approach to managing relational or nested
 // data in the store is to treat a portion of your store as if
@@ -12,11 +13,6 @@ import { Todo } from '../models/todo.model';
 // individual items should be done by storing the item's ID, and
 // arrays of IDs should be used to indicate ordering.
 // see: https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape
-
-export interface State {
-  byId: { [id: string]: Todo };
-  allIds: string[];
-}
 
 const byId = createReducer(
   <{ [id: string]: Todo }>{},
@@ -42,5 +38,5 @@ export const todos = combineReducers({
   allIds,
 });
 
-export const getAllTodos = (state: State): Todo[] =>
+export const getAllTodos = (state: TodosState): Todo[] =>
   state.allIds.map((id) => state.byId[id]);
